@@ -20,18 +20,18 @@ const TaskStats = ({ tasks }) => {
   ];
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6">
-      <h3 className="text-lg font-semibold text-gray-800 mb-4">Overview</h3>
-      {/* Fixed 4 columns grid */}
-      <div className="grid grid-cols-4 gap-4">
+    <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
+      <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4">Overview</h3>
+      {/* Mobile: 2 columns, Desktop: 4 columns */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {stats.map((stat, index) => (
-          <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-            <div className={`${stat.color} p-2 rounded-lg text-white`}>
-              <stat.icon className="w-5 h-5" />
+          <div key={index} className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 bg-gray-50 rounded-lg">
+            <div className={`${stat.color} p-1.5 sm:p-2 rounded-lg text-white`}>
+              <stat.icon className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <div className="text-2xl font-bold text-gray-800">{stat.value}</div>
-              <div className="text-sm text-gray-600">{stat.label}</div>
+              <div className="text-lg sm:text-2xl font-bold text-gray-800">{stat.value}</div>
+              <div className="text-xs sm:text-sm text-gray-600">{stat.label}</div>
             </div>
           </div>
         ))}

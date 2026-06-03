@@ -47,9 +47,9 @@ const Dashboard = ({ tasks, onAddTask, onEditTask, onDeleteTask, onToggleTask })
       {/* Header */}
       <div className="bg-white border-b sticky top-0 z-10">
         <div className="p-4">
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
             <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
-            <div className="flex-1 max-w-md">
+            <div className="flex-1 max-w-full sm:max-w-md">
               <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             </div>
           </div>
@@ -64,7 +64,7 @@ const Dashboard = ({ tasks, onAddTask, onEditTask, onDeleteTask, onToggleTask })
         </div>
 
         {/* Filter Buttons */}
-        <div className="mb-6 flex justify-center">
+        <div className="mb-6 flex flex-wrap justify-center gap-2">
           <FilterButtons filterStatus={filterStatus} setFilterStatus={setFilterStatus} />
         </div>
 
@@ -105,9 +105,9 @@ const Dashboard = ({ tasks, onAddTask, onEditTask, onDeleteTask, onToggleTask })
                 const status = getStatusBadge(task);
                 
                 return (
-                  <div key={task.id} className="px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                  <div key={task.id} className="px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-gray-50 transition-colors">
                     {/* Task Info */}
-                    <div className="flex items-start gap-3 flex-1">
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-3 flex-1">
                       <button
                         onClick={() => onToggleTask(task.id)}
                         className="mt-0.5 focus:outline-none"
@@ -127,7 +127,7 @@ const Dashboard = ({ tasks, onAddTask, onEditTask, onDeleteTask, onToggleTask })
                         }`}>
                           {task.title}
                         </h3>
-                        <div className="flex items-center gap-2 mt-1">
+                        <div className="flex flex-wrap items-center gap-2 mt-1">
                           <p className="text-xs text-gray-500">
                             {formatDate(task.dueDate)}
                           </p>
@@ -139,7 +139,7 @@ const Dashboard = ({ tasks, onAddTask, onEditTask, onDeleteTask, onToggleTask })
                     </div>
                     
                     {/* Action Buttons */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <button
                         onClick={() => onEditTask(task)}
                         className="p-1.5 bg-blue-50 text-blue-700 rounded hover:bg-blue-100 transition-colors"

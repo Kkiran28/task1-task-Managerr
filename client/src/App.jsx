@@ -98,7 +98,32 @@ function App() {
         onAddTask={() => setIsFormOpen(true)}
       />
 
-      <main className="flex-1 ml-64">
+      <main className="flex-1 ml-0 md:ml-64">
+        <div className="md:hidden bg-white border-b shadow-sm px-4 py-3 space-y-3 sticky top-0 z-20">
+          <div className="flex items-center justify-between">
+            <h1 className="text-lg font-semibold text-gray-800">Task Manager</h1>
+            <button
+              onClick={() => setIsFormOpen(true)}
+              className="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors"
+            >
+              + Add
+            </button>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setActiveTab('dashboard')}
+              className={`flex-1 px-3 py-2 rounded-lg text-sm ${activeTab === 'dashboard' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'}`}
+            >
+              Dashboard
+            </button>
+            <button
+              onClick={() => setActiveTab('tasks')}
+              className={`flex-1 px-3 py-2 rounded-lg text-sm ${activeTab === 'tasks' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'}`}
+            >
+              Tasks
+            </button>
+          </div>
+        </div>
         {activeTab === "dashboard" && (
           <Dashboard
             tasks={tasks}

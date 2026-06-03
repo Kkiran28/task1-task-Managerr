@@ -21,7 +21,7 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
     <div className={`bg-white rounded-lg p-4 border transition-all hover:shadow-md ${
       task.status === 'completed' ? 'opacity-75 bg-gray-50' : ''
     } ${overdue ? 'border-red-200 bg-red-50' : 'border-gray-200'}`}>
-      <div className="flex items-start gap-3">
+      <div className="flex flex-col sm:flex-row items-start gap-3">
         {/* Checkbox */}
         <button
           onClick={() => onToggle(task.id, task.status)}
@@ -42,7 +42,7 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
           {task.description && (
             <p className="text-sm text-gray-600 mt-1">{task.description}</p>
           )}
-          <div className="flex items-center gap-4 mt-2">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-2">
             {task.dueDate && (
               <div className={`flex items-center gap-1 text-xs ${overdue ? 'text-red-600 font-medium' : 'text-gray-500'}`}>
                 <Calendar className="w-3 h-3" />
@@ -61,7 +61,7 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
         </div>
 
         {/* Actions */}
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2 mt-3 sm:mt-0">
           <button
             onClick={() => onEdit(task)}
             className="p-1 text-gray-500 hover:text-blue-600 transition-colors"

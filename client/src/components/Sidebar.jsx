@@ -16,7 +16,7 @@ const Sidebar = ({ activeTab, setActiveTab, tasks, onAddTask }) => {
   }).length;
 
   return (
-    <aside className="w-64 bg-gradient-to-b from-slate-900 to-slate-800 shadow-xl fixed h-full overflow-y-auto border-r border-slate-700">
+    <aside className="hidden md:block w-64 bg-gradient-to-b from-slate-900 to-slate-800 shadow-xl fixed h-full overflow-y-auto border-r border-slate-700">
       <div className="p-6">
         {/* Logo */}
         <div className="mb-10">
