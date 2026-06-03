@@ -6,8 +6,8 @@ I have chosen **Exercise 1: Personal Task Manager** for this assessment. This is
 
 ## Live Demo Links
 
-- **Frontend (Netlify/Vercel):** [Add your deployed frontend link here]
-- **Backend (Render/Railway):** [Add your deployed backend link here]
+- **Frontend (Netlify/Vercel):** https://personall-task-manager.netlify.app/
+- **Backend (Render/Railway):** https://task-manager-0jun.onrender.com
 
 ## Tech Stack
 
