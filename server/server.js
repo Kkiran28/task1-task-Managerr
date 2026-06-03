@@ -3,7 +3,7 @@ const path = require("path");
 const express = require("express");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
@@ -25,6 +25,10 @@ const readTasks = () => {
 const writeTasks = (tasks) => {
   fs.writeFileSync(DATA_FILE, JSON.stringify(tasks, null, 2));
 };
+
+app.get("/", (req, res) => {
+  res.send("🚀 Task Manager Backend Running");
+});
 
 //Get all tasks
 app.get("/api/tasks", (req, res) => {
@@ -108,7 +112,8 @@ app.delete("/api/tasks/:id", (req, res) => {
   });
 });
 
+
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port:${PORT}`);
 });
