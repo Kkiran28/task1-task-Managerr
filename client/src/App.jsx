@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TaskStats from "./components/TaskStats";
 import SearchBar from "./components/SearchBar";
+import FilterButtons from "./components/FilterButtons";
 
 function App() {
   // Sample tasks
@@ -28,10 +29,22 @@ function App() {
   // Search state
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter tasks based on search
-  const filteredTasks = tasks.filter((task) =>
-    task.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Filter state
+  const [filterStatus, setFilterStatus] = useState("all");
+
+  // 🔍 Apply search + filter together
+  const filteredTasks = tasks.filter((task) => {
+    const matchesSearch = task.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
+    const matchesFilter =
+      filterStatus === "all" ||
+      (filterStatus === "active" && !task.completed) ||
+      (filterStatus === "completed" && task.completed);
+
+    return matchesSearch && matchesFilter;
+  });
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -41,18 +54,30 @@ function App() {
       </h1>
 
       {/* SEARCH BAR */}
-      <div className="max-w-md mx-auto mb-6">
+      <div className="max-w-md mx-auto mb-4">
         <SearchBar
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
         />
       </div>
 
+      {/* FILTER BUTTONS */}
+      <div className="flex justify-center mb-6">
+        <FilterButtons
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+        />
+      </div>
+
       {/* SEARCH RESULT INFO */}
       <p className="text-center mb-4 text-gray-600">
-        You searched:{" "}
+        Search:{" "}
         <span className="font-semibold text-black">
-          {searchQuery || "Nothing yet"}
+          {searchQuery || "None"}
+        </span>{" "}
+        | Filter:{" "}
+        <span className="font-semibold text-black">
+          {filterStatus}
         </span>
       </p>
 
