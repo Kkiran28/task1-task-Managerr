@@ -6,11 +6,10 @@ I have chosen **Exercise 1: Personal Task Manager** for this assessment. This is
 
 ## Live Demo Links
 
-- **Frontend (Netlify/Vercel):** https://personall-task-manager.netlify.app/
-- **Backend (Render/Railway):** https://task-manager-0jun.onrender.com
+- **Frontend (Netlify):** https://personall-task-managerr.netlify.app/
+- **Backend (Render):** https://task-manager-0jun.onrender.com
 
-## Tech Stack
-
+--->Tech Stack
 ### Frontend
 
 Technology 
