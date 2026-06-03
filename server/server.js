@@ -90,7 +90,23 @@ app.put("/api/tasks/:id", (req, res) => {
   });
 });
 
+//DELETE TASK
+app.delete("/api/tasks/:id", (req, res) => {
+  const { id } = req.params;
+  const tasks = readTasks();
 
+  const filteredTasks = tasks.filter((task) => task.id !== id);
+
+  if (tasks.length === filteredTasks.length) {
+    return res.status(404).json({ message: "Task not found" });
+  }
+
+  writeTasks(filteredTasks);
+
+  res.json({
+    message: "Task deleted successfully",
+  });
+});
 
 // Start server
 app.listen(PORT, () => {
