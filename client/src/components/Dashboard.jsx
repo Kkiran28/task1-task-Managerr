@@ -72,13 +72,7 @@ const Dashboard = ({ tasks, onAddTask, onEditTask, onDeleteTask, onToggleTask })
         <div className="bg-white rounded-lg shadow-sm border">
           <div className="p-4 border-b flex justify-between items-center">
             <h2 className="text-lg font-semibold text-gray-800">Tasks</h2>
-            <button
-              onClick={onAddTask}
-              className="flex items-center gap-1 px-3 py-1.5 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors"
-            >
-              <Plus className="w-4 h-4" />
-              Add Task
-            </button>
+            
           </div>
           
           {tasks.length === 0 ? (
