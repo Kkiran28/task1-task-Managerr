@@ -23,30 +23,49 @@ const readTasks = () => {
 
 // Helper: Write tasks
 const writeTasks = (tasks) => {
-  fs.writeFileSync(
-    DATA_FILE,
-    JSON.stringify(tasks, null, 2)
-  );
+  fs.writeFileSync(DATA_FILE, JSON.stringify(tasks, null, 2));
 };
 
-// Home route
-app.get("/", (req, res) => {
-  res.send("🚀 Server is running successfully!");
-});
-
-
-// =======================
-// GET ALL TASKS
-// =======================
+//Get all tasks
 app.get("/api/tasks", (req, res) => {
   const tasks = readTasks();
   res.json(tasks);
 });
 
 
-// =======================
-// START SERVER
-// =======================
+// CREATE TASK
+
+app.post("/api/tasks", (req, res) => {
+  const { title, description, dueDate, priority } = req.body;
+
+  if (!title || title.trim() === "") {
+    return res.status(400).json({
+      error: "Title is required",
+    });
+  }
+
+  const tasks = readTasks();
+
+  const newTask = {
+    id: Date.now().toString(),
+    title: title.trim(),
+    description: description || "",
+    dueDate: dueDate || null,
+    priority: priority || "medium",
+    completed: false,
+    createdAt: new Date().toISOString(),
+  };
+
+  tasks.push(newTask);
+  writeTasks(tasks);
+
+  res.status(201).json({
+    message: "Task created successfully",
+    task: newTask,
+  });
+});
+
+// Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
