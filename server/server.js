@@ -32,9 +32,7 @@ app.get("/api/tasks", (req, res) => {
   res.json(tasks);
 });
 
-
 // CREATE TASK
-
 app.post("/api/tasks", (req, res) => {
   const { title, description, dueDate, priority } = req.body;
 
@@ -64,6 +62,35 @@ app.post("/api/tasks", (req, res) => {
     task: newTask,
   });
 });
+
+// UPDATE TASK
+app.put("/api/tasks/:id", (req, res) => {
+  const { id } = req.params;
+  const tasks = readTasks();
+  const taskIndex = tasks.findIndex(
+    (task) => task.id === id
+  );
+  if (taskIndex === -1) {
+    return res.status(404).json({
+      message: "Task not found",
+    });
+  }
+
+  tasks[taskIndex] = {
+    ...tasks[taskIndex],
+    ...req.body,
+    id: tasks[taskIndex].id,
+  };
+
+  writeTasks(tasks);
+
+  res.json({
+    message: "Task updated successfully",
+    task: tasks[taskIndex],
+  });
+});
+
+
 
 // Start server
 app.listen(PORT, () => {
